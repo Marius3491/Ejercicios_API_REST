@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+<h2>Recuperar Datos de Provincias de Argentina</h2>
+<button onclick="fetchArgentinianProvinces()">Obtener Provincias</button>
+<ul id="argentinianProvinces"></ul>
+
+<script>
+    function fetchArgentinianProvinces() {
+    fetch('https://apis.datos.gob.ar/georef/api/provincias')
+        .then(response => response.json())
+        .then(data => {
+            const argentinianProvinces = document.getElementById('argentinianProvinces');
+            argentinianProvinces.innerHTML = '';
+            data.provincias.forEach(province => {
+                const listItem = document.createElement('li');
+                listItem.textContent = province.nombre;
+                argentinianProvinces.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+</script>
+</body>
+</html>

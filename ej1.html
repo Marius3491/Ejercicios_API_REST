@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+<h2>Recuperar Datos de Personajes de Star Wars</h2>
+<button onclick="fetchStarWarsData()">Obtener Datos</button>
+<ul id="starWarsData"></ul>
+
+<script>
+    function fetchStarWarsData() {
+    fetch('https://swapi.dev/api/people/')
+        .then(response => response.json())
+        .then(data => {
+            const starWarsData = document.getElementById('starWarsData');
+            starWarsData.innerHTML = '';
+            data.results.forEach(person => {
+                const listItem = document.createElement('li');
+                listItem.textContent = person.name;
+                starWarsData.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+</script>
+</body>
+</html>
