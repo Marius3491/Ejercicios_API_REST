@@ -12,15 +12,15 @@
 
 <script>
     function fetchGeoIPData() {
-    fetch('https://freegeoip.app/json/')
+    fetch('http://ip-api.com/json/')
         .then(response => response.json())
         .then(data => {
             const geoIPData = document.getElementById('geoIPData');
             geoIPData.innerHTML = `
-            <p><strong>País:</strong> ${data.country_name}</p>
+            <p><strong>País:</strong> ${data.country}</p>
             <p><strong>Ciudad:</strong> ${data.city}</p>
-            <p><strong>Código Postal:</strong> ${data.zip_code}</p>
-            <p><strong>IP:</strong> ${data.ip}</p>
+            <p><strong>Código Postal:</strong> ${data.zip}</p>
+            <p><strong>IP:</strong> ${data.query}</p>
           `;
         })
         .catch(error => console.error('Error fetching data:', error));
